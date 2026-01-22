@@ -1,0 +1,7 @@
+Program_Variant, CPU_Usage, Mem_Usage, IO_Usage, Duration
+Program_A+cpu, 85.12, 0, 11.93, 5.401434062
+Program_A+mem, 95.46, 6.50, 11.94, 77.512213651
+Program_A+io, 76.02, 0, 12.03, 7.306230780
+Program_B+cpu, 99.35, 0, 12.19, 4.873972223
+Program_B+mem, 97.70, 6.40, 13.29, 64.752253654
+Program_B+io, 90.45, 0, 14.19, 4.220353389
