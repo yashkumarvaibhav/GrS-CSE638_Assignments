@@ -7,7 +7,7 @@
  * The message fields are sent directly from their heap locations using iovec.
  */
 
-#include "MT25091_Common.h"
+#include "MT25091_Part_A_Common.h"
 #include <sys/uio.h>
 
 /* Global state */

@@ -13,7 +13,7 @@
  *   - One-copy (sendmsg with iovec): direct DMA from user pages -> 1 copy
  */
 
-#include "MT25091_Common.h"
+#include "MT25091_Part_A_Common.h"
 #include <sys/uio.h>
 
 /* Global server configuration */

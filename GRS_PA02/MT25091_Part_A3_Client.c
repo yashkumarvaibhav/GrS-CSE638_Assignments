@@ -6,7 +6,7 @@
  * This client uses sendmsg() with MSG_ZEROCOPY for true zero-copy transmission.
  */
 
-#include "MT25091_Common.h"
+#include "MT25091_Part_A_Common.h"
 #include <linux/errqueue.h>
 #include <linux/socket.h>
 #include <sys/uio.h>

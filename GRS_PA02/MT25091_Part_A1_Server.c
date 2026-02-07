@@ -15,7 +15,7 @@
  *   - Runtime parameterization for message size and thread count
  */
 
-#include "MT25091_Common.h"
+#include "MT25091_Part_A_Common.h"
 
 /* Global server configuration */
 static ServerConfig server_config;

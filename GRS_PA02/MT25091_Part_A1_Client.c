@@ -13,7 +13,7 @@
  *   - Runtime parameterization for all settings
  */
 
-#include "MT25091_Common.h"
+#include "MT25091_Part_A_Common.h"
 
 /* Global state */
 static volatile int running = 1;

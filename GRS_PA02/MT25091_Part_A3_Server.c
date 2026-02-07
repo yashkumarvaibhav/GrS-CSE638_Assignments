@@ -47,7 +47,7 @@
  *   - Completion notifications must be handled via error queue
  */
 
-#include "MT25091_Common.h"
+#include "MT25091_Part_A_Common.h"
 #include <linux/errqueue.h>
 #include <linux/socket.h>
 #include <sys/uio.h>

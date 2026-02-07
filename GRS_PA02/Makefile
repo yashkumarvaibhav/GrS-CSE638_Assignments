@@ -9,7 +9,7 @@ CFLAGS = -Wall -Wextra -O2 -pthread
 LDFLAGS = -pthread
 
 # Source files
-COMMON_HEADER = MT25091_Common.h
+COMMON_HEADER = MT25091_Part_A_Common.h
 
 # Two-Copy Implementation (A1)
 A1_SERVER = MT25091_Part_A1_Server
