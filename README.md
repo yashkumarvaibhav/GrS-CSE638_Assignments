@@ -1,6 +1,7 @@
 Roll No: MT25091  
 Name: Yash Kumar Vaibhav  
-Assignment: GRS PA01
+
+---
 
 # GRS PA01: Processes and Threads
 
@@ -154,3 +155,123 @@ I utilized an AI coding assistant (Google Deepmind's Agent) to:
 - Write the LaTeX code for generating the report (while the content, data analysis, and logic are my own).
 
 The core C implementation (`fork`, `pthread`, workers) and experimental design are my own work.
+
+---
+---
+
+# GRS PA02: Network I/O Analysis
+
+## Overview
+This submission contains the implementation for Assignment 2. It compares the performance of three TCP socket communication mechanisms:
+- **Two-Copy**: Standard `send()`/`recv()` with serialization
+- **One-Copy**: `sendmsg()` with scatter-gather I/O (iovec)
+- **Zero-Copy**: `sendmsg()` with `MSG_ZEROCOPY` flag
+
+## Directory Structure
+- `MT25091_Part_A_Common.h`: Shared definitions and utilities
+- `MT25091_Part_A1_Server.c`: Two-copy server implementation
+- `MT25091_Part_A1_Client.c`: Two-copy client implementation
+- `MT25091_Part_A2_Server.c`: One-copy server implementation
+- `MT25091_Part_A2_Client.c`: One-copy client implementation
+- `MT25091_Part_A3_Server.c`: Zero-copy server implementation
+- `MT25091_Part_A3_Client.c`: Zero-copy client implementation
+- `MT25091_Part_C_Experiment.sh`: Bash script for automated experiments
+- `MT25091_Part_D_Plots.py`: Matplotlib script for plot generation
+- `MT25091_Part_B_Results.CSV`: Combined throughput/latency data
+- `MT25091_Part_B_PerfStats.CSV`: Combined perf stat metrics
+- `MT25091_Part_B_<size>B_<threads>T.CSV`: Parameter-encoded CSV files (16 total)
+- `MT25091_Part_E_Report.pdf`: Final report with analysis
+- `Makefile`: Build configuration
+- `README`: This documentation file
+
+---
+
+## Prerequisites
+- **GCC** compiler with pthread support
+- **Python 3** with `matplotlib` library
+- **Linux perf** tool (`sudo apt install linux-tools-common`)
+- **Network namespace** support (for isolated testing)
+
+---
+
+## Compilation
+```bash
+cd GRS_PA02
+make clean
+make all
+```
+
+This generates six executables:
+- `MT25091_Part_A1_Server`, `MT25091_Part_A1_Client` (Two-copy)
+- `MT25091_Part_A2_Server`, `MT25091_Part_A2_Client` (One-copy)
+- `MT25091_Part_A3_Server`, `MT25091_Part_A3_Client` (Zero-copy)
+
+---
+
+## Usage
+
+### Command Line Arguments
+
+**Server:**
+```bash
+./MT25091_Part_A<N>_Server -p <port> -s <msg_size> -t <max_threads>
+```
+
+**Client:**
+```bash
+./MT25091_Part_A<N>_Client -h <host> -p <port> -s <msg_size> -t <threads> -d <duration>
+```
+
+| Parameter | Description | Example |
+|-----------|-------------|---------|
+| `-p` | Port number | 8080 |
+| `-s` | Message size in bytes | 4096 |
+| `-t` | Thread count | 4 |
+| `-h` | Server hostname/IP | 10.0.0.1 |
+| `-d` | Test duration (seconds) | 3 |
+
+### Quick Demo
+```bash
+# Terminal 1 (Server)
+./MT25091_Part_A1_Server -p 8080 -s 4096 -t 4
+
+# Terminal 2 (Client)
+./MT25091_Part_A1_Client -h 127.0.0.1 -p 8080 -s 4096 -t 2 -d 3
+```
+
+### Automated Experiments
+```bash
+# Enable perf access
+sudo sysctl kernel.perf_event_paranoid=-1
+
+# Run all 48 experiments with namespace isolation
+sudo ./MT25091_Part_C_Experiment.sh
+```
+
+---
+
+## Generating Plots
+```bash
+python3 MT25091_Part_D_Plots.py
+```
+Plots are generated and displayed. Values are hardcoded from CSV data.
+
+---
+
+## AI Declaration
+
+I utilized AI coding assistants (Google Deepmind, GitHub Copilot) to:
+- Assist in socket implementation planning
+- Debug experiment script errors
+- Convert report to LaTeX format
+- Generate ASCII diagrams for kernel behavior
+
+The core C implementation, experimental design, and analysis are my own work.
+
+---
+
+## Author
+
+**Roll Number:** MT25091  
+**Course:** CSE638 - Graduate Systems  
+**Date:** February 2026
